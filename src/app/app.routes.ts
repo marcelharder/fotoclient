@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { CategoryListComponent } from './categoryList/categoryList.component';
-import { MemberCardComponent } from './member-card/member-card.component';
 import { ImageViewerComponent } from './image-viewer/image-viewer.component';
 import { AboutComponent } from './About/About.component';
 import { PhotoListComponent } from './photo-list/photo-list.component';
@@ -15,7 +14,6 @@ export const routes: Routes = [
   { path: 'photoList', component: PhotoListComponent},
   { path: 'tapeList', component: TapeListComponent},
   { path: 'diaList/:id', component: DiaListComponent},
-  { path: 'memberCard/:id', component: MemberCardComponent},
   { path: 'imageViewer/:id', component: ImageViewerComponent},
   { path: '**', component: HomeComponent, pathMatch: 'full'}
 ];
