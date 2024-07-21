@@ -8,8 +8,15 @@
             <a routerLink="/" routerLinkActive="active" class="nav-link" >Home</a>
           </li>
           <li class="nav-item">
-            <a routerLink="/categoryList"  routerLinkActive="active" class="nav-link">Categories</a>
+            <a routerLink="/categoryList"  routerLinkActive="active" class="nav-link">Slides</a>
           </li>
+          <li class="nav-item">
+            <a routerLink="/photoList"  routerLinkActive="active" class="nav-link">Photos</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/tapeList"  routerLinkActive="active" class="nav-link">Tapes</a>
+          </li>
+        
           <li class="nav-item">
             <a routerLink="/about"  routerLinkActive="active" class="nav-link">About</a>
           </li>
@@ -20,7 +27,7 @@
 
     @if (accountService.currentUser()){
         <div dropdown class="dropdown">
-            <a dropdownToggle class="dropdown-toggle text-light text-decoration-none">Welcome {{accountService.currentUser()?.username}}</a>
+            <a dropdownToggle class="dropdown-toggle text-light text-decoration-none">Welcome {{currentUserName}}</a>
             <div *dropdownMenu class="dropdown-menu">
                 <a class="dropdown-item">Edit profile</a>
                 <div class="dropdown-divider"></div>

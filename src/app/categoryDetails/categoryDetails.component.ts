@@ -19,9 +19,9 @@ export class CategoryDetailsComponent {
   };
 
   /*  slides: {image: string; text?: string}[] = [
-    {image: 'assets/images/baden-baden/0.jpg',text: "Aan de wandel"},
-    {image: 'assets/images/baden-baden/1.jpg', text: "Waar is mijn bier ?"},
-    {image: 'assets/images/baden-baden/0.jpg'}
+    {image: 'assets/dias/baden-baden/0.jpg',text: "Aan de wandel"},
+    {image: 'assets/dias/baden-baden/1.jpg', text: "Waar is mijn bier ?"},
+    {image: 'assets/dias/baden-baden/0.jpg'}
   ];
   activeSlideIndex = 0; */
 
@@ -31,7 +31,7 @@ export class CategoryDetailsComponent {
     // get all the slides that come with this category
   }
   goDetails(id: number) {
-    this.router.navigate(['/memberCard/'+id]);
+    this.router.navigate(['/diaList/'+id]);
   }
 
 }

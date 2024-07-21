@@ -20,14 +20,7 @@ export class CategoryListComponent implements OnInit{
    // get the array from the account service signal
    this.SeriesArray = this.accountService.CatArray();
 
-debugger;
 
-   /*  this.categoryService.getAllowedCategories().subscribe({
-      next:  response => this.SeriesArray = response,
-      error: ()=>{},
-      complete: ()=>{}
-    }) 
-      */
   }
 
 

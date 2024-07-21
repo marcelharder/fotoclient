@@ -1,7 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AccountService } from '../_services/account.service';
-import { BsDropdownModule} from 'ngx-bootstrap/dropdown';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
@@ -11,24 +11,32 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.css'
 })
-export class NavComponent {
+export class NavComponent implements OnInit {
   accountService = inject(AccountService);
-  model:any = {};
+  model: any = {};
+  currentUserName? = "";
 
-  login(){
+  ngOnInit(): void {
+
+  }
+
+  login() {
     this.accountService.login(this.model).subscribe({
-      next: response => {console.log(response);},
-      error:  error => {console.log(error);},
-      complete: ()=>{}
+      next: response => {
+        this.currentUserName = this.accountService.currentUser()?.UserName;
+      },
+      error: error => { console.log(error); },
+      complete: () => { }
     })
 
-   
-    
-    
-    console.log(this.model);}
 
-    logout(){
-      this.accountService.logout();
-    }
+
+
+    console.log(this.model);
+  }
+
+  logout() {
+    this.accountService.logout();
+  }
 
 }

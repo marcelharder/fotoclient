@@ -1,16 +1,18 @@
 
-<div class="row equal">
-  <div *ngFor="let t of SeriesArray" class="col-lg-2 col-md-3 col-sm-6">
+
+
+ <div class="row">
+  <div *ngFor="let t of SeriesArray" class="col-sm-4">
    <app-categoryDetails [selectedCategory]="t"></app-categoryDetails>
   </div>
-</div>
+</div> 
+ 
 
-
- <!--  @for (t of SeriesArray; track $index) {
+  <!-- @for (t of SeriesArray; track $index) {
   <div class="row equal">
     <div class="col-lg-2 col-md-3 col-sm-6">
-      <app-categoryDetails [selectedCategory]="t"></app-categoryDetails>
+      <app-categoryDetails [selectedCategory]="t" style="width: 100%;"></app-categoryDetails>
     </div>
   </div>
-  } -->
+  }  -->
 
