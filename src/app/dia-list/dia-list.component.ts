@@ -14,8 +14,9 @@ export class DiaListComponent implements OnInit {
   
   ngOnInit(): void {
     this.testId = this.activatedRoute.snapshot.params['id'];
-    debugger;
-    // bv. get all the dias from category 5
+    
+    // bv. get all the dias from category 5 and show them in the viewer
+
   }
 
 }
