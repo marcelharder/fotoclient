@@ -11,11 +11,11 @@ export class CategoryService {
   baseUrl = environment.apiUrl;
 
   getAllowedCategories(){
-    return this.http.get<categoryModel[]>(this.baseUrl + 'Config/getAllowedCategories')
+    return this.http.get<categoryModel[]>(this.baseUrl + 'Category/getAllowedCategories')
   }
 
   getDescription(category: any){
-    return this.http.get<string>(this.baseUrl + 'Config/getDescription/' + category)
+    return this.http.get<string>(this.baseUrl + 'Category/getDescription/' + category)
   }
 
   

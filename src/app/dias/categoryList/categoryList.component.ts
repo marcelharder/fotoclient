@@ -1,9 +1,9 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { CategoryService } from '../_services/category.service';
-import { categoryModel } from '../_models/categoryModel';
+import { CategoryService } from '../../_services/category.service';
+import { categoryModel } from '../../_models/categoryModel';
 import { CategoryDetailsComponent } from '../categoryDetails/categoryDetails.component';
 import { NgFor } from '@angular/common';
-import { AccountService } from '../_services/account.service';
+import { AccountService } from '../../_services/account.service';
 
 @Component({
     selector: 'app-categoryList',

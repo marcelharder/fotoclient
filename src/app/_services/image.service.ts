@@ -13,6 +13,6 @@ export class ImageService {
   constructor() { }
 
   getDiasFromCategory(cat: number){
-    return this.http.get<slideModel[]>(this.baseUrl + 'Image/getImages')
+    return this.http.get<slideModel[]>(this.baseUrl + 'Images/getImagesByCategory/' + cat)
   }
 }

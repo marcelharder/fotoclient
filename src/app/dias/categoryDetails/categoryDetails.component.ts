@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
-import { categoryModel } from '../_models/categoryModel';
+import { categoryModel } from '../../_models/categoryModel';
 import { Router } from '@angular/router';
 
 @Component({
