@@ -30,7 +30,6 @@ export class FulldiaComponent implements OnInit {
     if (this.id) {
       this.imgService.getCarouselData(this.id).subscribe({
         next: (data) => {
-          debugger;
           this.carouselData = data;
         },
       });
@@ -56,8 +55,8 @@ export class FulldiaComponent implements OnInit {
   backToArray(){this.router.navigate(['/categoryList']);}
 
   showOnlyOneSlide(){if(this.carouselData.numberOfImages == 0) {return true;} else {return false;}}
-  showTheRightButton(){if(this.carouselData.showR) {return true;} else {return false;}}
-  showTheLeftButton(){if(this.carouselData.showL) {return true;} else {return false;}}
+  /* showTheRightButton(){if(this.carouselData.showR === true) {return true;} else {return false;}}
+  showTheLeftButton(){if(this.carouselData.showL === true) {return true;} else {return false;}} */
 
 
 
