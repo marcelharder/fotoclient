@@ -1,0 +1,27 @@
+
+<div class="card">
+    <div class="card-header">
+        @if(showOnlyOneSlide()){
+            <div class="row">
+                <div class="col-sm-6"><h6>There is only one image in this series</h6></div>
+                <div class="col-sm-6" style="float: right;"><button class="btn btn-primary" (click)="backToArray()"><i class="fa fa-chevron-up"></i></button></div>
+            </div>
+       }
+       @if(!showOnlyOneSlide()){<h6>There are {{carouselData.numberOfImages}} images in this series</h6>}
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-1">@if(showTheLeftButton()){<button class="btn btn-primary" (click)="leftButtonClicked()"><i class="fa fa-chevron-left"></i></button>}</div>
+            <div class="col-sm-10"><img src="{{getFotoFile(this.id)}}" alt="" width="100% height=100% "/></div>
+            <div class="col-sm-1">@if(showTheRightButton()){<button class="btn btn-primary" (click)="rightButtonClicked()"><i class="fa fa-chevron-right"></i></button>}</div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
