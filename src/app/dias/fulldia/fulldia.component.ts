@@ -1,26 +1,28 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { ImageService } from '../../_services/image.service';
 import { CarouselModel } from '../../_models/CarouselModel';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-fulldia',
   standalone: true,
-  imports: [],
+  imports: [NgIf],
   templateUrl: './fulldia.component.html',
   styleUrl: './fulldia.component.css',
 })
 export class FulldiaComponent implements OnInit {
   baseUrl = environment.apiUrl;
+ 
   @Input() id = '';
   imgService = inject(ImageService);
   router = inject(Router);
   carouselData: CarouselModel = {
     numberOfImages: 0,
     category: 0,
-    showR: false,
-    showL: false,
+    ShowR: false,
+    ShowL: false,
     nextImageIdR: '',
     nextImageIdL: '',
   };
@@ -55,9 +57,9 @@ export class FulldiaComponent implements OnInit {
   backToArray(){this.router.navigate(['/categoryList']);}
 
   showOnlyOneSlide(){if(this.carouselData.numberOfImages == 0) {return true;} else {return false;}}
-  /* showTheRightButton(){if(this.carouselData.showR === true) {return true;} else {return false;}}
-  showTheLeftButton(){if(this.carouselData.showL === true) {return true;} else {return false;}} */
-
-
+ 
+  showTheLeftButton(){if(this.carouselData.ShowL) {return true;} else {return false;}} 
+  showTheRightButton(){if(this.carouselData.ShowR) {return true;} else {return false;}} 
+ 
 
 }

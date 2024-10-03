@@ -1,8 +1,8 @@
 export interface CarouselModel{
 numberOfImages:number;
 category: number;
-showR:boolean;
-showL:boolean;
+ShowR:boolean;
+ShowL:boolean;
 nextImageIdR:string;
 nextImageIdL:string;
 }
