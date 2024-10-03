@@ -19,4 +19,7 @@ export class ImageService {
   getCarouselData(id: string){
     return this.http.get<CarouselModel>(this.baseUrl + 'Images/getCarousel/' + id)
   }
+  getSpecificFileFromId(id:string){
+    return this.http.get<slideModel>(this.baseUrl + 'Images/findImage/' + id)
+  }
 }

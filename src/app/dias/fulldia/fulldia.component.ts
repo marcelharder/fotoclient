@@ -4,6 +4,7 @@ import { environment } from '../../../environments/environment';
 import { ImageService } from '../../_services/image.service';
 import { CarouselModel } from '../../_models/CarouselModel';
 import { NgIf } from '@angular/common';
+import { slideModel } from '../../_models/slideModel';
 
 @Component({
   selector: 'app-fulldia',
@@ -26,6 +27,19 @@ export class FulldiaComponent implements OnInit {
     nextImageIdR: '',
     nextImageIdL: '',
   };
+  sm: slideModel = {
+    Id: '',
+    ImageUrl: '',
+    YearTaken: '',
+    Location: '',
+    Familie: '',
+    Category: 0,
+    Quality: '',
+    Series: '',
+    Spare1: '',
+    Spare2: '',
+    Spare3: ''
+  };
 
   ngOnInit(): void {
     // get the route id
@@ -36,6 +50,16 @@ export class FulldiaComponent implements OnInit {
         },
       });
     }
+  }
+
+  getTheFilenameFromId(id: string): string {
+    // first get the slideModel from id
+    /* this.imgService.getSpecificFileFromId(id).subscribe({
+      next: (data) => {this.sm = data},
+    });
+    
+    return this.sm.ImageUrl; */
+    return '1';
   }
 
   getFotoFile(id: string) {

@@ -19,6 +19,14 @@ export class AppComponent implements OnInit {
   title = 'client';
   result: any;
 
+  constructor(){
+    window.onbeforeunload = function(){
+      localStorage.clear();
+      return '';
+
+    }
+  }
+
 
   ngOnInit(): void {
    this.setCurrentUser();

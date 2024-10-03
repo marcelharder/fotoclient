@@ -7,7 +7,12 @@
                 <div class="col-sm-6" style="float: right;"><button class="btn btn-primary" (click)="backToArray()"><i class="fa fa-chevron-up"></i></button></div>
             </div>
        }
-       @if(!showOnlyOneSlide()){<h6>There are {{carouselData.numberOfImages}} images in this series</h6>}
+       @if(!showOnlyOneSlide()){
+        <div class="row">
+            <div class="col-sm-6"><h6>There are {{carouselData.numberOfImages}} images in this series</h6></div>
+            <div class="col-sm-6" style="float: right;"><h6>Slide no: {{getTheFilenameFromId(this.id)}}</h6></div>
+        </div>
+        }
     </div>
 
     <div class="card-body">
