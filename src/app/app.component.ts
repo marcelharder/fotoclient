@@ -40,7 +40,7 @@ export class AppComponent implements OnInit {
   }
 
   getDescription(){
-    this.http.get<string>('http://localhost:5123/api/Config/getDescription/4', {responseType: 'text' as 'json'}).subscribe({
+    this.http.get<string>('http://localhost:8103/api/Config/getDescription/4', {responseType: 'text' as 'json'}).subscribe({
       next: response => this.result = response,
       error: error=> console.log(error),
       complete: ()=> console.log('Request has completed')
