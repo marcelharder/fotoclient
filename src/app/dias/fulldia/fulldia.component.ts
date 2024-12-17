@@ -15,7 +15,7 @@ import { slideModel } from '../../_models/slideModel';
 })
 export class FulldiaComponent implements OnInit {
   baseUrl = environment.apiUrl;
- 
+  numberOfSlides = 0;
   @Input() id = '';
   imgService = inject(ImageService);
   router = inject(Router);
@@ -38,7 +38,7 @@ export class FulldiaComponent implements OnInit {
     Series: '',
     Spare1: '',
     Spare2: '',
-    Spare3: ''
+    Spare3: '',
   };
 
   ngOnInit(): void {
@@ -52,38 +52,54 @@ export class FulldiaComponent implements OnInit {
     }
   }
 
-  getTheFilenameFromId(id: string): string {
-    // first get the slideModel from id
-    /* this.imgService.getSpecificFileFromId(id).subscribe({
-      next: (data) => {this.sm = data},
-    });
-    
-    return this.sm.ImageUrl; */
+  showDiaDetails(){}
+
+  getSlideNumber(): string {
     return '1';
   }
 
   getFotoFile(id: string) {
     return this.baseUrl + 'Images/getFullImageFile/' + id;
   }
-  leftButtonClicked(){
+  leftButtonClicked() {
+  
     // link to this page with nextImageIdL queryParam
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.onSameUrlNavigation = 'reload';
     this.router.navigate(['/fulldia/' + this.carouselData.nextImageIdL]);
   }
-  rightButtonClicked(){
+  rightButtonClicked() {
+    
     // link to this page with nextImageIdR queryParam
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.onSameUrlNavigation = 'reload';
     this.router.navigate(['/fulldia/' + this.carouselData.nextImageIdR]);
   }
 
-  backToArray(){this.router.navigate(['/categoryList']);}
+  backToArray() {
+    this.router.navigate(['/categoryList']);
+  }
 
-  showOnlyOneSlide(){if(this.carouselData.numberOfImages == 0) {return true;} else {return false;}}
- 
-  showTheLeftButton(){if(this.carouselData.ShowL) {return true;} else {return false;}} 
-  showTheRightButton(){if(this.carouselData.ShowR) {return true;} else {return false;}} 
- 
+  showOnlyOneSlide() {
+    if (this.carouselData.numberOfImages == 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
+  showTheLeftButton() {
+    if (this.carouselData.ShowL) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  showTheRightButton() {
+    if (this.carouselData.ShowR) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
