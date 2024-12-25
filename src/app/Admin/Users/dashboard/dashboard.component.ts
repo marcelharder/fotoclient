@@ -21,14 +21,11 @@ export class DashboardComponent implements OnInit {
   listOfUsers: User[] = [];
   AddPage = 0;
 
-
-
   ngOnInit(): void {
     this.route.data.subscribe({
       next: (data) => {
         this.listOfUsers = data['us'];
-        
-          
+   
       },
     });
   }

@@ -18,6 +18,8 @@ export class UserService {
 
   editUser(us: User){return this.http.put<string>(this.baseUrl + 'User/editUser', us)}
 
+  registerUser(us: User){return this.http.post<string>(this.baseUrl + 'account/register', us)}
+
 
 
 }
