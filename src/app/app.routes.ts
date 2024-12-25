@@ -9,6 +9,8 @@ import { DiaListComponent } from './dias/dia-list/dia-list.component';
 import { DiaListResolver } from './_resolvers/dia-list.resolver';
 import { FulldiaComponent } from './dias/fulldia/fulldia.component';
 import { fulldiaResolver } from './_resolvers/fulldia.resolver';
+import { DashboardComponent } from './Admin/Users/dashboard/dashboard.component';
+import { UserResolver } from './_resolvers/user.resolver';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,6 +20,7 @@ export const routes: Routes = [
   { path: 'tapeList', component: TapeListComponent},
   { path: 'diaList/:id', component: DiaListComponent, resolve: {lof: DiaListResolver}},
   { path: 'imageViewer/:id', component: ImageViewerComponent},
+  { path: 'dashboard', component: DashboardComponent, resolve:{us:UserResolver}},
   { path: 'fulldia/:id', component: FulldiaComponent, resolve: {dia: fulldiaResolver}},
   { path: '**', component: HomeComponent, pathMatch: 'full'}
 ];
