@@ -11,6 +11,7 @@ import { FulldiaComponent } from './dias/fulldia/fulldia.component';
 import { fulldiaResolver } from './_resolvers/fulldia.resolver';
 import { DashboardComponent } from './Admin/Users/dashboard/dashboard.component';
 import { UserResolver } from './_resolvers/user.resolver';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,6 +19,7 @@ export const routes: Routes = [
   { path: 'categoryList', component: CategoryListComponent},
   { path: 'photoList', component: PhotoListComponent},
   { path: 'tapeList', component: TapeListComponent},
+  { path: 'editProfile', component: EditProfileComponent},
   { path: 'diaList/:id', component: DiaListComponent, resolve: {lof: DiaListResolver}},
   { path: 'imageViewer/:id', component: ImageViewerComponent},
   { path: 'dashboard', component: DashboardComponent, resolve:{us:UserResolver}},

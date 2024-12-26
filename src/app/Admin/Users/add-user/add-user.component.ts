@@ -15,22 +15,25 @@ export class AddUserComponent {
   userservice = inject(UserService);
   route = inject(Router);
   us: User = {
+    UserId:0,
     UserName: '',
     Token: '',
     Created: new Date,
     paidTill: new Date,
     password: '',
-    email: '',
+    Email: '',
+    AllowedToSee:'',
     gender: '',
-    mobile: ''
+    PhoneNumber: ''
   };
 
 
   register() {
-    if(this.us.email !== ''){
+    if(this.us.Email !== ''){
     this.userservice.registerUser(this.us).subscribe(
       {
         next: (data) => {
+          this.route.navigateByUrl("/")
         },
       }
     )

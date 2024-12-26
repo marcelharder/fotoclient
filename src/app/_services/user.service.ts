@@ -14,12 +14,12 @@ export class UserService {
 
   getAllUsers(){ return this.http.get<User[]>(this.baseUrl + 'User/getAllUsers')  }
 
-  deleteUser(name: string){ return this.http.delete<string>(this.baseUrl + 'User/deleteUser' + name)}
-
-  editUser(us: User){return this.http.put<string>(this.baseUrl + 'User/editUser', us)}
+  editUser(us: User){return this.http.put<string>(this.baseUrl + 'User/UpdateUser', us,{ responseType: 'text' as 'json' })}
 
   registerUser(us: User){return this.http.post<string>(this.baseUrl + 'account/register', us)}
 
+  deleteUser(us: number){return this.http.delete<string>(this.baseUrl + 'User/RemoveUser/' + us,{ responseType: 'text' as 'json' })}
 
+  getSpecificUser(us: number){return this.http.get<User>(this.baseUrl + 'User/SpecificUser/' + us)}
 
 }

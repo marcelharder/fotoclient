@@ -1,10 +1,12 @@
 export interface User {
+    UserId:number,
     UserName: string;
     Token: string;
     Created: Date;
     paidTill: Date;
     password:string,
-    email:string,
+    Email:string,
+    AllowedToSee:string,
     gender:string,
-    mobile:string
+    PhoneNumber:string
 }

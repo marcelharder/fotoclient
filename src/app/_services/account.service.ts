@@ -19,17 +19,13 @@ export class AccountService {
   login(model: any){
     return this.http.post<User>(this.baseUrl + 'account/login', model).pipe(
       map(user => {
-     
         if(user){localStorage.setItem('user', JSON.stringify(user));}
         this.currentUser.set(user);
-
         this.categoryService.getAllowedCategories().subscribe({
           next:  response => this.CatArray.set(response),
           error: ()=>{},
           complete: ()=>{}
         }) 
-
-
       })
     );
   }
@@ -37,6 +33,10 @@ export class AccountService {
   logout(){
     localStorage.removeItem('user');
     this.currentUser.set(null);
+  }
+
+  changePwd(pwd: any){
+    return this.http.put<string>(this.baseUrl + 'account/changePassword/', pwd,{ responseType: 'text' as 'json' })
   }
 
   
