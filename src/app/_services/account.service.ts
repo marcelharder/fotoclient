@@ -5,6 +5,7 @@ import { map } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { categoryModel } from '../_models/categoryModel';
 import { CategoryService } from './category.service';
+import { PasswordUpdate } from '../_models/PasswordUpdate';
 
 @Injectable({
   providedIn: 'root'
@@ -35,8 +36,8 @@ export class AccountService {
     this.currentUser.set(null);
   }
 
-  changePwd(pwd: any){
-    return this.http.put<string>(this.baseUrl + 'account/changePassword/', pwd,{ responseType: 'text' as 'json' })
+  changePwd(pwd: PasswordUpdate){
+    return this.http.put<string>(this.baseUrl + 'Account/changePassword/', pwd,{ responseType: 'text' as 'json' })
   }
 
   
