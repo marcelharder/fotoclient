@@ -4,6 +4,7 @@ import { AccountService } from '../_services/account.service';
 import { UserService } from '../_services/user.service';
 import { PasswordUpdate } from '../_models/PasswordUpdate';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-edit-profile',
@@ -24,6 +25,8 @@ export class EditProfileComponent implements OnInit{
     CurrentPassword: ''
   }
 
+  constructor(private toastr: ToastrService){}
+
   ngOnInit(): void {
     // get email from the loggedin user
     this.userId = this.acc.currentUser()?.UserId;
@@ -38,11 +41,18 @@ export class EditProfileComponent implements OnInit{
   }
   
 
-  public Cancel(){ this.router.navigateByUrl("/")}
+  public Cancel(){ 
+     //show toast
+    this.toastr.warning('Cancelled ...');
+    this.router.navigateByUrl("/")}
   public Update(){
 
     this.acc.changePwd(this.pwd).subscribe({
       next: () => {
+        //show toast
+        this.toastr.success('Password changed ...');
+        this.router.navigateByUrl("/");
+         
         
       }
     })

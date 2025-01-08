@@ -18,6 +18,7 @@ export class DiasDetailsComponent {
   getImageFromServer(id: string) {
     return this.baseUrl + 'Images/getImageFile/' + id;
   }
+  
   getImageFull(id: string) {
     // go to the full image page
     this.router.navigate(['/fulldia/' + id]);
