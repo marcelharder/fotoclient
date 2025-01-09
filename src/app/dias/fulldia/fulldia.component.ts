@@ -55,7 +55,14 @@ export class FulldiaComponent implements OnInit {
   showDiaDetails(){}
 
   getSlideNumber(): string {
-    return '1';
+    let numberLinks = +this.carouselData.nextImageIdL;
+    let numberRechts = +this.carouselData.nextImageIdR;
+    let currentNo = 0;
+    if(this.carouselData.nextImageIdL === null){currentNo = 1;}; 
+    if(this.carouselData.nextImageIdR === null){currentNo = this.carouselData.numberOfImages}; 
+    if(this.carouselData.nextImageIdL != null && this.carouselData.nextImageIdR != null){currentNo = numberRechts - 1;}
+    
+    return currentNo.toString();
   }
 
   getFotoFile(id: string) {

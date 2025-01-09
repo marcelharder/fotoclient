@@ -23,6 +23,6 @@ export const routes: Routes = [
   { path: 'diaList/:id', component: DiaListComponent, resolve: {lof: DiaListResolver}},
   { path: 'imageViewer/:id', component: ImageViewerComponent},
   { path: 'dashboard', component: DashboardComponent, resolve:{us:UserResolver}},
-  { path: 'fulldia/:id/:volgno', component: FulldiaComponent, resolve: {dia: fulldiaResolver}},
+  { path: 'fulldia/:id', component: FulldiaComponent, resolve: {dia: fulldiaResolver}},
   { path: '**', component: HomeComponent, pathMatch: 'full'}
 ];
