@@ -2,9 +2,13 @@
 
 
  <div class="row">
-  <div *ngFor="let t of SeriesArray" class="col-sm-4">
+  @for (t of catservice.paginatedResult()?.items; track t.Id){
+  <div class="col-sm-4">
+
    <app-categoryDetails [selectedCategory]="t"></app-categoryDetails>
+
   </div>
+  }
 </div> 
  
 

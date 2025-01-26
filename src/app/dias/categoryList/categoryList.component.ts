@@ -4,6 +4,7 @@ import { categoryModel } from '../../_models/categoryModel';
 import { CategoryDetailsComponent } from '../categoryDetails/categoryDetails.component';
 import { NgFor } from '@angular/common';
 import { AccountService } from '../../_services/account.service';
+import { catchError } from 'rxjs';
 
 @Component({
     selector: 'app-categoryList',
@@ -14,16 +15,22 @@ import { AccountService } from '../../_services/account.service';
 })
 export class CategoryListComponent implements OnInit{
   accountService = inject(AccountService);
-  SeriesArray: Array<categoryModel> | null = [];
+  catservice = inject(CategoryService);
+  pageNumber = 1;
+  pageSize = 9;
 
   ngOnInit(){
    // get the array from the account service signal
-   this.SeriesArray = this.accountService.CatArray();
-
+   //this.SeriesArray = this.accountService.CatArray();
+  if(!this.catservice.paginatedResult()){
+    this.loadCategories();
+  }
 
   }
 
-
+  loadCategories(){
+    this.catservice.getAllowedCategories(this.pageNumber, this.pageSize);
+  }
   
 
 }

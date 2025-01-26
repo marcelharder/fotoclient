@@ -1,7 +1,8 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpClientModule, HttpParams } from '@angular/common/http';
+import { Injectable, inject, signal } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { categoryModel } from '../_models/categoryModel';
+import { PaginatedResult } from '../_models/pagination';
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +10,36 @@ import { categoryModel } from '../_models/categoryModel';
 export class CategoryService {
   private http = inject(HttpClient);
   baseUrl = environment.apiUrl;
+  paginatedResult = signal<PaginatedResult<categoryModel[]> | null>(null);
 
-  getAllowedCategories(){
-    return this.http.get<categoryModel[]>(this.baseUrl + 'Category/getAllowedCategories')
+
+
+
+
+  getAllowedCategories(pageNumber?:number, pageSize?:number){
+
+    let params = new HttpParams();
+
+    if(pageNumber && pageSize){
+      params = params.append('PageNumber',pageNumber);
+      params = params.append('PageSize',pageSize);
+    }
+
+    return this.http.get<categoryModel[]>(this.baseUrl + 'Category/getAllowedCategories', {observe: 'response', params}).subscribe({
+      next: response => {
+        this.paginatedResult.set({
+          items: response.body as categoryModel[],
+          pagination: JSON.parse(response.headers.get('Pagination')!)
+        })
+        
+      }
+    })
+  
+  
+  
+  
+  
+  
   }
 
   getDescription(category: any){
