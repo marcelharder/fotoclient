@@ -10,6 +10,21 @@
   </div>
   }
 </div> 
+
+@if(catservice.paginatedResult()?.pagination){
+  <div class="d-flex justify-content-center mt-2">
+    <pagination 
+      [boundaryLinks]="true"
+      [totalItems]="catservice.paginatedResult()?.pagination!.totalItems"
+      [itemsPerPage]="catservice.paginatedResult()?.pagination!.itemsPerPage"
+      (pageChanged)="pageChanged($event)"
+      [maxSize]="10"
+    ></pagination>
+  
+  </div>
+}
+
+
  
 
   <!-- @for (t of SeriesArray; track $index) {

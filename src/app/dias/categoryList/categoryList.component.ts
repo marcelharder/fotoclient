@@ -5,17 +5,20 @@ import { CategoryDetailsComponent } from '../categoryDetails/categoryDetails.com
 import { NgFor } from '@angular/common';
 import { AccountService } from '../../_services/account.service';
 import { catchError } from 'rxjs';
+import {PaginationModule} from 'ngx-bootstrap/pagination';
 
 @Component({
     selector: 'app-categoryList',
     standalone: true,
     templateUrl: './categoryList.component.html',
     styleUrls: ['./categoryList.component.css'],
-    imports: [CategoryDetailsComponent,NgFor]
+    imports: [CategoryDetailsComponent,PaginationModule]
 })
 export class CategoryListComponent implements OnInit{
   accountService = inject(AccountService);
   catservice = inject(CategoryService);
+  currentPage = 3;
+  smallnumPages = 0;
   pageNumber = 1;
   pageSize = 9;
 
@@ -30,6 +33,13 @@ export class CategoryListComponent implements OnInit{
 
   loadCategories(){
     this.catservice.getAllowedCategories(this.pageNumber, this.pageSize);
+  }
+
+  pageChanged(event: any){
+    if(this.pageNumber != event.page){
+      this.pageNumber = event.page;
+      this.loadCategories();
+    }
   }
   
 
