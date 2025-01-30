@@ -25,9 +25,8 @@ export class CategoryService {
     this.cat.pageSize = pageSize;
     }
 
-    const response = this.categoryCache.get(Object.values(this.cat).join('-'));
-   
-    if(response) return this.setPaginatedResponse(response);
+   const response = this.categoryCache.get(Object.values(this.cat).join('-'));
+   if(response) return this.setPaginatedResponse(response);
 
     let params = new HttpParams();
 
