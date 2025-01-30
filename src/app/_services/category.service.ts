@@ -4,15 +4,18 @@ import { environment } from '../../environments/environment';
 import { categoryModel } from '../_models/categoryModel';
 import { PaginatedResult } from '../_models/pagination';
 import { catParams } from '../_models/catParams';
+import { AccountService } from './account.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
   private http = inject(HttpClient);
+  private acc = inject(AccountService);
   baseUrl = environment.apiUrl;
   paginatedResult = signal<PaginatedResult<categoryModel[]> | null>(null);
   cat: catParams = {
+    userId : 0,
     pageNumber: 0,
     pageSize: 0
   };
@@ -21,18 +24,20 @@ export class CategoryService {
   getAllowedCategories(pageNumber?:number, pageSize?:number){
     
     if(pageNumber && pageSize){
+    this.cat.userId = this.acc.currentUser()!.UserId;
     this.cat.pageNumber = pageNumber;
     this.cat.pageSize = pageSize;
     }
 
-   const response = this.categoryCache.get(Object.values(this.cat).join('-'));
-   if(response) return this.setPaginatedResponse(response);
+   //const response = this.categoryCache.get(Object.values(this.cat).join('-'));
+   //if(response) return this.setPaginatedResponse(response);
 
     let params = new HttpParams();
 
     if(pageNumber && pageSize){
-      params = params.append('PageNumber',pageNumber);
-      params = params.append('PageSize',pageSize);
+      params = params.append('UserId', this.cat.userId);
+      params = params.append('PageNumber',this.cat.pageNumber);
+      params = params.append('PageSize',this.cat.pageSize);
     }
 
     return this.http.get<categoryModel[]>(this.baseUrl + 'Category/getAllowedCategories', {observe: 'response', params}).subscribe({

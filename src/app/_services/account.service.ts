@@ -13,7 +13,6 @@ import { PasswordUpdate } from '../_models/PasswordUpdate';
 export class AccountService {
   http = inject(HttpClient);
   baseUrl = environment.apiUrl;
-  private categoryService = inject(CategoryService);
   currentUser = signal<User | null>(null);
   CatArray = signal<categoryModel[] | null>(null);
 
@@ -30,7 +29,6 @@ export class AccountService {
     localStorage.removeItem('user');
     this.currentUser.set(null);
     this.CatArray.set(null);
-    this.categoryService.paginatedResult.set(null);
   }
 
   changePwd(pwd: PasswordUpdate){

@@ -12,7 +12,7 @@ import {PaginationModule} from 'ngx-bootstrap/pagination';
 })
 export class CategoryListComponent implements OnInit{
   catservice = inject(CategoryService);
-  currentPage = 3;
+  currentPage = 0;
   smallnumPages = 0;
   pageNumber = 1;
   pageSize = 9;
@@ -20,9 +20,10 @@ export class CategoryListComponent implements OnInit{
   ngOnInit(){
    // get the array from the account service signal
    //this.SeriesArray = this.accountService.CatArray();
-  if(!this.catservice.paginatedResult()){
-    this.loadCategories();
-  }
+   this.loadCategories();
+ // if(!this.catservice.paginatedResult()){
+   
+ // }
 
   }
 
