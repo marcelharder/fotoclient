@@ -1,10 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CategoryService } from '../../_services/category.service';
-import { categoryModel } from '../../_models/categoryModel';
 import { CategoryDetailsComponent } from '../categoryDetails/categoryDetails.component';
-import { NgFor } from '@angular/common';
-import { AccountService } from '../../_services/account.service';
-import { catchError } from 'rxjs';
 import {PaginationModule} from 'ngx-bootstrap/pagination';
 
 @Component({
@@ -15,7 +11,6 @@ import {PaginationModule} from 'ngx-bootstrap/pagination';
     imports: [CategoryDetailsComponent,PaginationModule]
 })
 export class CategoryListComponent implements OnInit{
-  accountService = inject(AccountService);
   catservice = inject(CategoryService);
   currentPage = 3;
   smallnumPages = 0;

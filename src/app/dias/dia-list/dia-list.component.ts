@@ -4,34 +4,36 @@ import { slideModel } from '../../_models/slideModel';
 import { ImageService } from '../../_services/image.service';
 import { environment } from '../../../environments/environment';
 import { DiasDetailsComponent } from "../dias-details/dias-details.component";
+import {PaginationModule} from 'ngx-bootstrap/pagination';
 
 @Component({
   selector: 'app-dia-list',
   standalone: true,
-  imports: [DiasDetailsComponent],
+  imports: [DiasDetailsComponent,PaginationModule],
   templateUrl: './dia-list.component.html',
   styleUrl: './dia-list.component.css',
 })
 export class DiaListComponent implements OnInit {
   baseUrl = environment.apiUrl;
   private route = inject(ActivatedRoute);
-  private imageS = inject(ImageService);
-  listOfFotos: slideModel[] = [];
-  eersteFoto = '';
-  aantalSlides = 0;
-  item = 1;
+  imageService = inject(ImageService);
+  
+  currentPage = 0;
+  smallnumPages = 0;
+  pageNumber = 1;
+  pageSize = 12;
+  categoryId = "";
 
   ngOnInit(): void {
-    this.route.data.subscribe({
-      next: (data) => {
-        this.listOfFotos = data['lof'].Value;
-        this.eersteFoto = this.getImageFromServer(this.listOfFotos[0].Id);
-        this.aantalSlides = this.listOfFotos.length;
-      },
-    });
+    this.categoryId = this.route.snapshot.params['id'];// get category id from the route
+    this.loadImages(+this.categoryId);
   }
-
-  getImageFromServer(id: string) {
-    return this.baseUrl + "Images/getImageFile/" + id;
+  loadImages(id: number){ this.imageService.getDiasFromCategory(id, this.pageNumber, this.pageSize);}
+  getImageFromServer(id: string) {return this.baseUrl + "Images/getImageFile/" + id; }
+  pageChanged(event: any){
+    if(this.pageNumber != event.page){
+      this.pageNumber = event.page;
+      this.loadImages(+this.categoryId);
+    }
   }
 }

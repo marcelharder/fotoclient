@@ -5,6 +5,7 @@ import { slideModel } from '../_models/slideModel';
 import { CarouselModel } from '../_models/CarouselModel';
 import { catParams } from '../_models/catParams';
 import { PaginatedResult } from '../_models/pagination';
+import { imgParams } from '../_models/imgParams';
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +15,10 @@ export class ImageService {
   baseUrl = environment.apiUrl;
   paginatedResult = signal<PaginatedResult<slideModel[]> | null>(null);
   imageCache = new Map();
-  img: catParams = {
-    pageNumber: 0,
-    pageSize: 0
+  img: imgParams = {
+    Category:0,
+    PageNumber: 0,
+    PageSize: 0
   };
 
   constructor() { }
@@ -26,14 +28,15 @@ export class ImageService {
     let params = new HttpParams();
 
     if (pageNumber && pageSize) {
+      params = params.append('Category', x);
       params = params.append('PageNumber', pageNumber);
       params = params.append('PageSize', pageSize);
     }
 
-    const response = this.imageCache.get(Object.values(this.img).join('-'));
-    if (response) return this.setPaginatedResponse(response);
+    //const response = this.imageCache.get(Object.values(this.img).join('-'));
+    //if (response) return this.setPaginatedResponse(response);
 
-    return this.http.get<slideModel[]>(this.baseUrl + 'Images/getImagesByCategory/' + x, { observe: 'response', params }).subscribe({
+    return this.http.get<slideModel[]>(this.baseUrl + 'Images/getImagesByCategory', { observe: 'response', params }).subscribe({
       next: response => {
         this.setPaginatedResponse(response);
         this.imageCache.set(Object.values(this.img).join('-'), response);

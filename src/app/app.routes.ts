@@ -6,7 +6,6 @@ import { AboutComponent } from './About/About.component';
 import { PhotoListComponent } from './photo-list/photo-list.component';
 import { TapeListComponent } from './tape-list/tape-list.component';
 import { DiaListComponent } from './dias/dia-list/dia-list.component';
-import { DiaListResolver } from './_resolvers/dia-list.resolver';
 import { FulldiaComponent } from './dias/fulldia/fulldia.component';
 import { fulldiaResolver } from './_resolvers/fulldia.resolver';
 import { DashboardComponent } from './Admin/Users/dashboard/dashboard.component';
@@ -20,7 +19,7 @@ export const routes: Routes = [
   { path: 'photoList', component: PhotoListComponent},
   { path: 'tapeList', component: TapeListComponent},
   { path: 'editProfile', component: EditProfileComponent},
-  { path: 'diaList/:id', component: DiaListComponent, resolve: {lof: DiaListResolver}},
+  { path: 'diaList/:id', component: DiaListComponent},
   { path: 'imageViewer/:id', component: ImageViewerComponent},
   { path: 'dashboard', component: DashboardComponent, resolve:{us:UserResolver}},
   { path: 'fulldia/:id', component: FulldiaComponent, resolve: {dia: fulldiaResolver}},
