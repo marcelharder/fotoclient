@@ -17,6 +17,7 @@ export class FulldiaComponent implements OnInit {
   baseUrl = environment.apiUrl;
   numberOfSlides = 0;
   @Input() id = '';
+  diaDetails = 0;
   imgService = inject(ImageService);
   router = inject(Router);
   carouselData: CarouselModel = {
@@ -52,7 +53,8 @@ export class FulldiaComponent implements OnInit {
     }
   }
 
-  showDiaDetails(){}
+  showDiaDetails(){if(this.diaDetails == 1){return true} else {return false}}
+  SetDiaDetails(){this.diaDetails = 1;}
 
   getSlideNumber(): string {
     let numberLinks = +this.carouselData.nextImageIdL;
