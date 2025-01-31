@@ -1,6 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { slideModel } from '../../_models/slideModel';
 import { ImageService } from '../../_services/image.service';
 import { environment } from '../../../environments/environment';
 import { DiasDetailsComponent } from "../dias-details/dias-details.component";

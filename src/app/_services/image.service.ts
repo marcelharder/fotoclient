@@ -33,8 +33,8 @@ export class ImageService {
       params = params.append('PageSize', pageSize);
     }
 
-    //const response = this.imageCache.get(Object.values(this.img).join('-'));
-    //if (response) return this.setPaginatedResponse(response);
+    const response = this.imageCache.get(Object.values(this.img).join('-'));
+    if (response) return this.setPaginatedResponse(response);
 
     return this.http.get<slideModel[]>(this.baseUrl + 'Images/getImagesByCategory', { observe: 'response', params }).subscribe({
       next: response => {
@@ -44,12 +44,39 @@ export class ImageService {
     })
   }
 
+  getDiasForUser(x: number, pageNumber?: number, pageSize?: number) {
+
+    let params = new HttpParams();
+
+    if (pageNumber && pageSize) {
+      params = params.append('id', x);
+      params = params.append('PageNumber', pageNumber);
+      params = params.append('PageSize', pageSize);
+    }
+
+    const response = this.imageCache.get(Object.values(this.img).join('-'));
+    if (response) return this.setPaginatedResponse(response);
+
+    return this.http.get<slideModel[]>(this.baseUrl + 'Images/getFilesForThisUser', { observe: 'response', params }).subscribe({
+      next: response => {
+        this.setPaginatedResponse(response);
+        this.imageCache.set(Object.values(this.img).join('-'), response);
+      }
+    })
+  }
+
+
+
 
   getCarouselData(id: string) {
     return this.http.get<CarouselModel>(this.baseUrl + 'Images/getCarousel/' + id)
   }
   getSpecificFileFromId(id: string) {
     return this.http.get<slideModel>(this.baseUrl + 'Images/findImage/' + id)
+  }
+
+  uploadSpecificSlideModel(x: slideModel){
+    return this.http.put<any>(this.baseUrl + 'Images/updateImage', x)
   }
 
   private setPaginatedResponse(response: HttpResponse<slideModel[]>) {

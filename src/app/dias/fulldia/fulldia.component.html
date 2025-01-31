@@ -89,7 +89,58 @@
               width="100% height=100% "
             />
           </div>
-          <div class="col-sm-6">hier komen de details</div>
+          <div class="col-sm-6">
+            <div class="card">
+                <div class="card-header"><h6><span>Details</span></h6></div>
+                <div class="card-body">
+                    <form #diaForm="ngForm" (submit)="uploadDetails()" autocomplete="off">
+                        <div class="row mt-1">
+                            <div class="col-sm-6"> <h6><span>Location</span></h6></div>
+                            <div class="col-sm-6"> <input name="Location" [(ngModel)]="sm.Location" class="form-control me-2"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6"> <h6><span>Year</span></h6></div>
+                            <div class="col-sm-6"> <input name="yearTaken" [(ngModel)]="sm.YearTaken" class="form-control me-2"></div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col-sm-6"> <h6><span>Featuring (comma separated list)</span></h6></div>
+                            <div class="col-sm-6"> <input name="Spare1" [(ngModel)]="sm.Spare1" class="form-control me-2"></div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col-sm-12"></div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col-sm-12"></div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col-sm-12"><button class="btn btn-outline-success" type="submit">Upload</button></div>
+                        </div>
+                       
+                       
+                      
+                       
+                   
+                    
+                    
+                    
+                    </form>
+
+
+
+
+
+
+
+
+                </div>
+            </div>
+
+           
+            
+        
+        
+        
+        </div>
         </div>
       </div>
       <div class="col-sm-1">

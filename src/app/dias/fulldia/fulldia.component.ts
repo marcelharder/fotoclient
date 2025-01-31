@@ -5,11 +5,13 @@ import { ImageService } from '../../_services/image.service';
 import { CarouselModel } from '../../_models/CarouselModel';
 import { NgIf } from '@angular/common';
 import { slideModel } from '../../_models/slideModel';
+import { FormsModule } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-fulldia',
   standalone: true,
-  imports: [NgIf],
+  imports: [NgIf,FormsModule],
   templateUrl: './fulldia.component.html',
   styleUrl: './fulldia.component.css',
 })
@@ -53,8 +55,20 @@ export class FulldiaComponent implements OnInit {
     }
   }
 
+  /**
+   *
+   */
+  constructor(private toastr: ToastrService) {
+    
+    
+  }
+
   showDiaDetails(){if(this.diaDetails == 1){return true} else {return false}}
-  SetDiaDetails(){this.diaDetails = 1;}
+  SetDiaDetails(){
+    this.getFotoFileDetails(this.id);
+    this.diaDetails = 1;}
+  HideDiaDetails(){this.diaDetails = 0;}
+
 
   getSlideNumber(): string {
     let numberLinks = +this.carouselData.nextImageIdL;
@@ -66,10 +80,25 @@ export class FulldiaComponent implements OnInit {
     
     return currentNo.toString();
   }
-
   getFotoFile(id: string) {
     return this.baseUrl + 'Images/getFullImageFile/' + id;
   }
+  getFotoFileDetails(id: string){
+    this.imgService.getSpecificFileFromId(id).subscribe({
+      next: (response)=>{this.sm = response},
+      error: (error)=>{console.log(error)}
+    })
+  }
+
+  uploadDetails(){
+  this.imgService.uploadSpecificSlideModel(this.sm).subscribe({
+    next: (response)=>{}
+  })
+
+
+  }
+
+
   leftButtonClicked() {
   
     // link to this page with nextImageIdL queryParam
@@ -84,11 +113,9 @@ export class FulldiaComponent implements OnInit {
     this.router.onSameUrlNavigation = 'reload';
     this.router.navigate(['/fulldia/' + this.carouselData.nextImageIdR]);
   }
-
   backToArray() {
     this.router.navigate(['/categoryList']);
   }
-
   showOnlyOneSlide() {
     if (this.carouselData.numberOfImages == 0) {
       return true;
@@ -96,7 +123,6 @@ export class FulldiaComponent implements OnInit {
       return false;
     }
   }
-
   showTheLeftButton() {
     if (this.carouselData.ShowL) {
       return true;

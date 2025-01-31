@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { AccountService } from '../_services/account.service';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-nav',
@@ -21,12 +22,20 @@ export class NavComponent implements OnInit {
 
   }
 
+  /**
+   *
+   */
+  constructor(private toastr: ToastrService) {
+    
+    
+  }
+
   login() {
     this.accountService.login(this.model).subscribe({
       next: response => {
         this.currentUserName = this.accountService.currentUser()?.UserName;
       },
-      error: error => { console.log(error); },
+      error: error => { console.log(error);this.toastr.warning('Wrong password') },
       complete: () => { }
     })
 
