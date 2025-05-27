@@ -92,7 +92,10 @@ export class FulldiaComponent implements OnInit {
 
   uploadDetails(){
   this.imgService.uploadSpecificSlideModel(this.sm).subscribe({
-    next: (response)=>{}
+    next: (response)=>{
+      this.toastr.success("Uploaded ...");
+      this.HideDiaDetails();
+    }
   })
 
 
